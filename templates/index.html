@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Spielstart</title>
-  <link>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body class="bg-dark text-light d-flex align-items-center justify-content-center vh-100">
+<body>
 
-  <div class="card shadow-lg p-5 rounded-4" style="min-width: 350px;">
-    <h2 class="text-center mb-4">Willkommen!</h2>
+  <div>
+    <h2>Willkommen!</h2>
     <form action="{{ url_for('start') }}" method="post">
-      <div class="mb-3">
-        <label for="username" class="form-label">Benutzername</label>
-        <input type="text" class="form-control form-control-lg" id="username" name="username" placeholder="Dein Name" required>
+      <div>
+        <label for="username">Benutzername</label>
+        <input type="text" id="username" name="username" placeholder="Dein Name" required>
       </div>
-      <div class="d-grid">
-        <button type="submit" class="btn btn-primary btn-lg rounded-pill">Zum Spiel 🎮</button>
+      <div>
+        <button type="submit">Zum Spiel 🎮</button>
       </div>
     </form>
   </div>
