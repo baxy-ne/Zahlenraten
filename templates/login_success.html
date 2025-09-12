@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Success</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <div>
+    <h2>Success!</h2>
+    <form id="success-login-form" action="{{ url_for('success') }}" method="post">
+      <div>
+        <label for="username">{}</label>
+        <input type="text" id="username" name="username" placeholder="Dein Name" required>
+      </div>
+      <div>
+        <label for="password">Passwort</label>
+        <input type="password" id="password" name="password" placeholder="Passwort" required>
+      </div>
+      <a href="{{ url_for('register') }}">
+        <button type="button">Registrieren</button>
+      </a>
+      <div>
+        <button type="submit">Zum Spiel 🎮</button>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>
