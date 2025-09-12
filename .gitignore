@@ -6,6 +6,15 @@ __pycache__/
 # C extensions
 *.so
 
+# Visual Studio
+.vs/
+
+# Python
+__pycache__/
+*.pyc
+venv/
+
+
 # Distribution / packaging
 .Python
 build/
