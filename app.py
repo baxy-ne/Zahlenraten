@@ -45,12 +45,4 @@ def register():
         return render_template("register.html")
 
 if __name__ == "__main__":
-    user1 = User("arian", "geheim")
-
-    # 2. Neue Game-Instanz erstellen
-    game1 = Game(
-        user1.user_id,
-        aktuelle_versuche=0,
-    )
-    db.createUser(user1)
-    db.createGame(game1)
+    app.run(debug=True)
