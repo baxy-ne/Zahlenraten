@@ -161,3 +161,51 @@ def dropHighscoreTable():
     cursor.execute("DROP TABLE IF EXISTS highscore")
     conn.commit()
     conn.close()
+
+def getUserById(user_id: int):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM user WHERE user_id = ?", (user_id,))
+    conn.commit()
+    conn.close()
+    return cursor.fetchone()
+
+def getAllUsers():
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM user")
+    conn.commit()
+    conn.close()
+    return cursor.fetchall()
+
+def getUserByName(username: str):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM user WHERE username = ?", (username,))
+    conn.commit()
+    conn.close()
+    return cursor.fetchone()
+
+def getGameById(game_id: int):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM game WHERE game_id = ?", (game_id,))
+    conn.commit()
+    conn.close()
+    return cursor.fetchone()
+
+def getAllGames():
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM game")
+    conn.commit()
+    conn.close()
+    return cursor.fetchall()
+
+def getHighscore():
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM highscore")
+    conn.commit()
+    conn.close()
+    return cursor.fetchall()
