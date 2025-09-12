@@ -1,4 +1,3 @@
--- SQLite Foreign Keys aktivieren
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE IF NOT EXISTS user (
@@ -8,16 +7,16 @@ CREATE TABLE IF NOT EXISTS user (
 );
 
 CREATE TABLE IF NOT EXISTS game (
-    game_id INTEGER PRIMARY KEY,
-    user_id INTEGER,
+    game_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id varchar(255),
     random_number INTEGER,
     aktuelle_versuche INTEGER,
     FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
 
 CREATE TABLE IF NOT EXISTS highscore (
-    highscore_id INTEGER PRIMARY KEY,
-    user_id INTEGER,
+    highscore_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id varchar (255),
     game_id INTEGER,
     versuche INTEGER,
     FOREIGN KEY (user_id) REFERENCES user(user_id),

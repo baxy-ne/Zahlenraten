@@ -20,7 +20,6 @@ def createTables():
 
 def get_connection():
     conn = sqlite3.connect(DB_PATH)
-    conn.execute("PRAGMA foreign_keys = ON;")
     return conn
 
 # --- CREATE FUNCTIONS ---
@@ -30,8 +29,8 @@ def createUser(user: User):
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute(
-        "INSERT INTO user (username, password) VALUES (?, ?)",
-        (user.username, user.password)
+        "INSERT INTO user (user_id, username, password) VALUES (?, ?, ?)",
+        (user.user_id, user.username, user.password)
     )
     conn.commit()
     conn.close()
@@ -41,8 +40,8 @@ def createGame(game: Game):
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute(
-        "INSERT INTO game (random_number, aktuelle_versuche) VALUES (?, ?)",
-        (game.random_number, game.aktuelle_versuche)
+        "INSERT INTO game (user_id, random_number, aktuelle_versuche) VALUES (?, ?, ?)",
+        (game.user_id, game.random_number, game.aktuelle_versuche)
     )
     conn.commit()
     conn.close()
