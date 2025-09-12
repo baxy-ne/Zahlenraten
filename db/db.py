@@ -1,5 +1,8 @@
 import os
 import sqlite3
+
+from pyglet.font.win32query import value
+
 from models.user import User
 from models.game import Game
 from models.highscore import Highscore
@@ -166,46 +169,47 @@ def getUserById(user_id: int):
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM user WHERE user_id = ?", (user_id,))
-    conn.commit()
+    value = cursor.fetchone()
     conn.close()
-    return cursor.fetchone()
+    return value
 
 def getAllUsers():
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM user")
-    conn.commit()
+    value = cursor.fetchall()
     conn.close()
-    return cursor.fetchall()
+    return value
 
 def getUserByName(username: str):
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM user WHERE username = ?", (username,))
-    conn.commit()
+    value = cursor.fetchone()
     conn.close()
-    return cursor.fetchone()
+    return value
 
 def getGameById(game_id: int):
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM game WHERE game_id = ?", (game_id,))
-    conn.commit()
+    value = cursor.fetchone()
     conn.close()
-    return cursor.fetchone()
+    return value
 
 def getAllGames():
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM game")
-    conn.commit()
+    value = cursor.fetchall()
     conn.close()
-    return cursor.fetchall()
+    return value
 
 def getHighscore():
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM highscore")
-    conn.commit()
+    value = cursor.fetchall()
     conn.close()
-    return cursor.fetchall()
+
+    return value
