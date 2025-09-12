@@ -15,6 +15,13 @@
         <input type="text" id="username" name="username" placeholder="Dein Name" required>
       </div>
       <div>
+        <label for="password">Passwort</label>
+        <input type="password" id="password" name="password" placeholder="Passwort" required>
+      </div>
+      <a href="{{ url_for('register') }}">
+        <button type="button">Registrieren</button>
+      </a>
+      <div>
         <button type="submit">Zum Spiel 🎮</button>
       </div>
     </form>
