@@ -39,7 +39,8 @@ def register():
             user = User(username, hashed_password)
             return redirect(url_for("game", username=user.username))
         return redirect(url_for("register"))
-    return render_template("register.html")
+    else:
+        return render_template("register.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
