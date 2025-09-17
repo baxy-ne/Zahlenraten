@@ -2,16 +2,16 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Spielstart</title>
+  <title>Login Success</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 
   <div>
-    <h2>Willkommen!</h2>
-    <form id="login-form" action="{{ url_for('start') }}" method="post">
+    <h2>Success!</h2>
+    <form id="success-login-form" action="{{ url_for('success') }}" method="post">
       <div>
-        <label for="username">Benutzername</label>
+        <label for="username">{}</label>
         <input type="text" id="username" name="username" placeholder="Dein Name" required>
       </div>
       <div>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Spiel</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div>
+    <h1>Willkommen im Spiel, {{ username }}!</h1>
+    <a href="{{ url_for('index') }}">Zurück zum Start</a>
+  </div>
+</body>
+</html>
+
+
