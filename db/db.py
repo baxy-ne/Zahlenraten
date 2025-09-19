@@ -1,8 +1,6 @@
 import os
 import sqlite3
 
-from pyglet.font.win32query import value
-
 from models.user import User
 from models.game import Game
 from models.highscore import Highscore
