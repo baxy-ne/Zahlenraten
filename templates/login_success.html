@@ -8,21 +8,10 @@
 <body>
 
   <div>
-    <h2>Success!</h2>
+    <h2>name already in db!</h2>
     <form id="success-login-form" action="{{ url_for('success') }}" method="post">
       <div>
         <label for="username">{}</label>
-        <input type="text" id="username" name="username" placeholder="Dein Name" required>
-      </div>
-      <div>
-        <label for="password">Passwort</label>
-        <input type="password" id="password" name="password" placeholder="Passwort" required>
-      </div>
-      <a href="{{ url_for('register') }}">
-        <button type="button">Registrieren</button>
-      </a>
-      <div>
-        <button type="submit">Zum Spiel 🎮</button>
       </div>
     </form>
   </div>
