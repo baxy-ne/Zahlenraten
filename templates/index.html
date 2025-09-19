@@ -8,23 +8,24 @@
 <body>
 
   <div>
-    <h1>Willkommen!</h1>
-      <h2>Anmelden oder registrieren um das Spiel zu beginnen...</h2>
+    <h1 class="willkommen">Willkommen!</h1>
+      <h2 class="Info">Anmelden oder registrieren um das Spiel zu beginnen...</h2>
     <form action="{{ url_for('start') }}" method="post">
-      <div>
+      <div class="input-row">
         <label for="username">Benutzername</label>
         <input type="text" id="username" name="username" placeholder="Dein Name" required>
-      </div>
-      <div>
+      
         <label for="password">Passwort</label>
         <input type="password" id="password" name="password" placeholder="Passwort" required>
       </div>
-      <a href="{{ url_for('register') }}">
-        <button type="button">Registrieren</button>
+      <div class="button-row">
+        <a href="{{ url_for('register') }}">
+          <button type="button">Registrieren</button>
       </a>
-      <div>
-        <button type="submit">Zum Spiel 🎮</button>
+       <button type="submit">Zum Spiel 🎮</button>
       </div>
+     
+     
     </form>
   </div>
 
