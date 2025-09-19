@@ -1,7 +1,6 @@
 import os
 import sqlite3
 
-
 from models.user import User
 from models.game import Game
 from models.highscore import Highscore
