@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session
-
-from db.db import createTables, createUser
+import os
+from db.db import createTables, createUser, getUserByName
 from models.user import User
 from werkzeug.security import generate_password_hash
 app = Flask(__name__)
+app.secret_key = os.environ.get("SECRET_KEY", "dev") 
 createTables()
 @app.route("/")
 def index():
@@ -38,14 +39,16 @@ def register():
     if request.method == "POST":
         username = (request.form.get("username") or "").strip()
         password = request.form.get("password") or ""
-        #if getUserByName(username) == []:
+        if not getUserByName(username):
 
-        if username and password:
-            hashed_password = generate_password_hash(password)
-            user = User(username, hashed_password)
-            createUser(user)
-            return redirect(url_for("index"))
-        return redirect(url_for("register"))
+            if username and password:
+                hashed_password = generate_password_hash(password)
+                user = User(username, hashed_password)
+                createUser(user)
+                return redirect(url_for("index"))
+            return redirect(url_for("success"))
+        return redirect(url_for("success"))
+        #return redirect(url_for("register"))
     else:
         return render_template("register.html")
 
