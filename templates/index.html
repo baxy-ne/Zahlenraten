@@ -4,28 +4,57 @@
   <meta charset="UTF-8">
   <title>Spielstart</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    .willkommen {
+      text-align: center; 
+      font-size: 48px; 
+    
+    }
+    .Info {
+      overflow: hidden;
+      white-space: nowrap;
+      margin: 0 auto;
+      animation:
+          typing 3.5s steps(70,end);
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .form-input{
+      width: 250px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .button-row{
+      width: 250px;
+      display: flex;
+      gap: 10px;
+      justify-content:space-between;
+    }
+  </style>
 </head>
 <body>
 
-  <div>
-    <h2>Willkommen!</h2>
-    <form id="login-form" action="{{ url_for('start') }}" method="post">
+    <h1 class="willkommen">Willkommen!</h1>
+    <h2 class="Info">Anmelden oder registrieren um das Spiel zu beginnen...</h2>
+    <form class="form-input" action="{{ url_for('start') }}" method="post">
       <div>
         <label for="username">Benutzername</label>
         <input type="text" id="username" name="username" placeholder="Dein Name" required>
-      </div>
-      <div>
+            
         <label for="password">Passwort</label>
-        <input type="password" id="password" name="password" placeholder="Passwort" required>
+        <input type="password" id="password" name="password" placeholder="Passwort" required>      
       </div>
-      <a href="{{ url_for('register') }}">
-        <button type="button">Registrieren</button>
-      </a>
-      <div>
-        <button type="submit">Zum Spiel 🎮</button>
-      </div>
-    </form>
-  </div>
 
+        <div class="button-row">
+          <a href="{{ url_for('register') }}">
+            <button type="button">Registrieren</button>
+          </a>
+          <button type="submit">Zum Spiel 🎮</button>
+        </div>   
+     
+    </form>
+  
 </body>
 </html>

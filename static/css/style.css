@@ -7,3 +7,70 @@ body {
     justify-content: center;
     align-items: center;
 }
+:root {
+    
+    --text-color-dark: #333333;
+    --padding: 10px 15px;
+
+    --border-radius: 10px;
+    --border-color: #333333;
+
+    --button-color: #e0d4b7;
+    --component-fontsize: 14px;
+
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+body {
+    background-color:#f5f5dc;
+    color: var(--text-color-dark);
+    margin: 0 auto;
+    padding: 0;
+    width: 1000px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes typing{
+    from {width: 0}
+    to {width: 100%}
+}
+
+label {
+  display: block;
+  font-size: var(--component-fontsize);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-color-dark);
+}
+
+input {
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+  padding: var(--padding);
+  font-size: var(--component-fontsize);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  outline: none;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
+}
+
+button{
+    padding: var(--padding);
+    font-size: 15px;
+    background-color: var(--button-color);
+    color: var(--text-color-dark);
+    border-radius: var(--border-radius);
+}
