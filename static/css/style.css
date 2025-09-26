@@ -8,6 +8,10 @@
 
     --button-color: #e0d4b7;
     --component-fontsize: 14px;
+
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
 }
 
 body {
@@ -37,8 +41,9 @@ label {
 }
 
 input {
-  display: block;
   width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
   padding: var(--padding);
   font-size: var(--component-fontsize);
   border: 1px solid var(--border-color);
