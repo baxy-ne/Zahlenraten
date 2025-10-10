@@ -18,6 +18,8 @@ def index():
 @app.route("/start", methods=["POST"])
 def start():
     payload = request.get_json(silent=True) or {}
+    is_json_request = bool(payload)
+    
     if not payload:
         username = (request.form.get("username") or "").strip()
         password = request.form.get("password") or ""
@@ -26,23 +28,33 @@ def start():
         password = payload.get("password") or ""
 
     if not username or not password:
-        return jsonify({"status": "error", "message": "Benutzername und Passwort erforderlich"}), 400
+        if is_json_request:
+            return jsonify({"status": "error", "message": "Benutzername und Passwort erforderlich"}), 400
+        return redirect(url_for("index"))
 
     # Benutzer aus Datenbank holen
     user_data = getUserByName(username)
     if not user_data:
-        return jsonify({"status": "error", "message": "Benutzer nicht gefunden"}), 404
+        if is_json_request:
+            return jsonify({"status": "error", "message": "Benutzer nicht gefunden"}), 404
+        return redirect(url_for("index"))
     
     # Passwort überprüfen (Reihenfolge in DB: user_id, password, username)
     user_id, hashed_password, db_username = user_data
     if not check_password_hash(hashed_password, password):
-        return jsonify({"status": "error", "message": "Falsches Passwort"}), 401
+        if is_json_request:
+            return jsonify({"status": "error", "message": "Falsches Passwort"}), 401
+        return redirect(url_for("index"))
 
     # Session setzen
     session["username"] = db_username
     session["user_id"] = user_id
     
-    return jsonify({"status": "success", "username": username})
+    # Bei normalem Formular-Submit zur game.html weiterleiten
+    if is_json_request:
+        return jsonify({"status": "success", "username": username})
+    else:
+        return redirect(url_for("game", username=db_username))
 
 @app.route("/game/<username>")
 def game(username):

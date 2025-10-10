@@ -5,88 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zahlenraten - Highscores</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <style>
-    .highscores-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    
-    .highscores-table {
-      width: 100%;
-      background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    
-    th {
-      background: #4CAF50;
-      color: white;
-      padding: 15px;
-      text-align: left;
-    }
-    
-    td {
-      padding: 12px 15px;
-      border-bottom: 1px solid #ddd;
-    }
-    
-    tr:hover {
-      background: #f5f5f5;
-    }
-    
-    .rank {
-      font-weight: bold;
-      color: #666;
-    }
-    
-    .rank-1 {
-      color: #ffd700;
-      font-size: 1.2em;
-    }
-    
-    .rank-2 {
-      color: #c0c0c0;
-      font-size: 1.1em;
-    }
-    
-    .rank-3 {
-      color: #cd7f32;
-      font-size: 1.1em;
-    }
-    
-    .nav-links {
-      text-align: center;
-      margin-top: 20px;
-    }
-    
-    .nav-links a {
-      color: #2196F3;
-      text-decoration: none;
-      margin: 0 15px;
-      font-size: 1.1em;
-    }
-    
-    .nav-links a:hover {
-      text-decoration: underline;
-    }
-    
-    .loading {
-      text-align: center;
-      padding: 40px;
-      color: #666;
-    }
-  </style>
 </head>
 <body>
   <div class="highscores-container">
-    <h1>🏆 Highscores - Die Besten Spieler</h1>
+    <h1>Highscores - Die Besten Spieler</h1>
     
     <div class="highscores-table">
       <table id="highscores-table">
