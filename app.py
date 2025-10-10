@@ -30,21 +30,21 @@ def start():
     if not username or not password:
         if is_json_request:
             return jsonify({"status": "error", "message": "Benutzername und Passwort erforderlich"}), 400
-        return redirect(url_for("index"))
+        return render_template("index.html", error="Benutzername oder Passwort falsch")
 
     # Benutzer aus Datenbank holen
     user_data = getUserByName(username)
     if not user_data:
         if is_json_request:
             return jsonify({"status": "error", "message": "Benutzer nicht gefunden"}), 404
-        return redirect(url_for("index"))
+        return render_template("index.html", error="Benutzername oder Passwort falsch")
     
     # Passwort überprüfen (Reihenfolge in DB: user_id, password, username)
     user_id, hashed_password, db_username = user_data
     if not check_password_hash(hashed_password, password):
         if is_json_request:
             return jsonify({"status": "error", "message": "Falsches Passwort"}), 401
-        return redirect(url_for("index"))
+        return render_template("index.html", error="Benutzername oder Passwort falsch")
 
     # Session setzen
     session["username"] = db_username
@@ -190,14 +190,22 @@ def register():
     if request.method == "POST":
         username = (request.form.get("username") or "").strip()
         password = request.form.get("password") or ""
-        if not getUserByName(username):
-            if username and password:
-                hashed_password = generate_password_hash(password)
-                user = User(username, hashed_password)
-                createUser(user)
-                return redirect(url_for("index"))
-            return redirect(url_for("success"))
-        return redirect(url_for("success"))
+        
+        # Prüfen ob Username und Passwort vorhanden sind
+        if not username or not password:
+            return render_template("register.html", error="Benutzername und Passwort erforderlich")
+        
+        # Prüfen ob User bereits existiert
+        if getUserByName(username):
+            return render_template("register.html", error="Benutzername bereits vergeben")
+        
+        # User erstellen
+        hashed_password = generate_password_hash(password)
+        user = User(username, hashed_password)
+        createUser(user)
+        
+        # Zur Login-Seite mit Erfolgsmeldung weiterleiten
+        return render_template("index.html", success="Registrierung erfolgreich! Du kannst dich jetzt einloggen.")
     else:
         return render_template("register.html")
 

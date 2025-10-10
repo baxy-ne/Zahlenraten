@@ -38,6 +38,16 @@
 
     <h1 class="willkommen">Willkommen!</h1>
     <h2 class="Info">Anmelden oder registrieren um das Spiel zu beginnen...</h2>
+    {% if success %}
+    <div>
+      <p>{{ success }}</p>
+    </div>
+    {% endif %}
+    {% if error %}
+    <div>
+      <p>{{ error }}</p>
+    </div>
+    {% endif %}
     <form class="form-input" action="{{ url_for('start') }}" method="post">
       <div>
         <label for="username">Benutzername</label>
