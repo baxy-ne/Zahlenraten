@@ -2,15 +2,53 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Spiel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zahlenraten - Spiel</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  
 </head>
 <body>
-  <div>
-    <h1>Willkommen im Spiel, {{ username }}!</h1>
-    <a href="{{ url_for('index') }}">Zurück zum Start</a>
+  <div class="game-container">
+    <h1>Zahlenraten - Willkommen {{ username }}!</h1>
+    
+    <div class="game-area">
+      <button id="start-button">Spiel starten</button>
+      
+      <div id="game-status">Klicke auf "Spiel starten" um zu beginnen!</div>
+      
+      <div class="input-group">
+        <input 
+          type="number" 
+          id="guess-input" 
+          placeholder="Deine Zahl (1-100)" 
+          min="1" 
+          max="100"
+          disabled
+        >
+        <button id="guess-button" disabled>Raten</button>
+      </div>
+    </div>
+    
+    <div class="attempts-section">
+      <h3>Deine Versuche</h3>
+      <ul id="attempts-list">
+        <li>Noch keine Versuche</li>
+      </ul>
+    </div>
+    
+    <div class="highscores-section">
+      <h3>Top 10 Highscores</h3>
+      <ul id="highscores-list">
+        <li>Lade Highscores...</li>
+      </ul>
+    </div>
+    
+    <div class="nav-links">
+      <a href="{{ url_for('highscores_page') }}">Alle Highscores</a>
+      <a href="{{ url_for('logout') }}">Ausloggen</a>
+    </div>
   </div>
+  
+  <script src="{{ url_for('static', filename='js/game.js') }}"></script>
 </body>
 </html>
-
-

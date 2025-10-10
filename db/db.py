@@ -186,6 +186,10 @@ def getUserByName(username: str):
     value = cursor.fetchone()
     conn.close()
     return value
+    conn.commit()
+    returnvalue = cursor.fetchone()
+    conn.close()
+    return returnvalue
 
 def getGameById(game_id: int):
     conn = get_connection()
