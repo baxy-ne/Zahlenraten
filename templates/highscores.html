@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zahlenraten - Highscores</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    .highscores-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .highscores-table {
+      width: 100%;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    th {
+      background: #4CAF50;
+      color: white;
+      padding: 15px;
+      text-align: left;
+    }
+    
+    td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    tr:hover {
+      background: #f5f5f5;
+    }
+    
+    .rank {
+      font-weight: bold;
+      color: #666;
+    }
+    
+    .rank-1 {
+      color: #ffd700;
+      font-size: 1.2em;
+    }
+    
+    .rank-2 {
+      color: #c0c0c0;
+      font-size: 1.1em;
+    }
+    
+    .rank-3 {
+      color: #cd7f32;
+      font-size: 1.1em;
+    }
+    
+    .nav-links {
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    .nav-links a {
+      color: #2196F3;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 1.1em;
+    }
+    
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+    
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="highscores-container">
+    <h1>🏆 Highscores - Die Besten Spieler</h1>
+    
+    <div class="highscores-table">
+      <table id="highscores-table">
+        <thead>
+          <tr>
+            <th>Rang</th>
+            <th>Spieler</th>
+            <th>Versuche</th>
+            <th>Spiel-ID</th>
+          </tr>
+        </thead>
+        <tbody id="highscores-body">
+          <tr>
+            <td colspan="4" class="loading">Lade Highscores...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="nav-links">
+      <a href="{{ url_for('index') }}">🏠 Zurück zum Start</a>
+    </div>
+  </div>
+  
+  <script>
+    async function loadAllHighscores() {
+      try {
+        const response = await fetch('/api/highscores');
+        const data = await response.json();
+        
+        const tbody = document.getElementById('highscores-body');
+        tbody.innerHTML = '';
+        
+        if (data.status === 'success' && data.highscores.length > 0) {
+          data.highscores.forEach((score, index) => {
+            const row = document.createElement('tr');
+            const rank = index + 1;
+            
+            row.innerHTML = `
+              <td class="rank rank-${rank <= 3 ? rank : ''}">${rank}.</td>
+              <td>${score.username}</td>
+              <td><strong>${score.versuche}</strong> Versuche</td>
+              <td>#${score.game_id}</td>
+            `;
+            
+            tbody.appendChild(row);
+          });
+        } else {
+          tbody.innerHTML = '<tr><td colspan="4" class="loading">Noch keine Highscores vorhanden</td></tr>';
+        }
+      } catch (error) {
+        console.error('Fehler beim Laden der Highscores:', error);
+        document.getElementById('highscores-body').innerHTML = 
+          '<tr><td colspan="4" class="loading">Fehler beim Laden der Highscores</td></tr>';
+      }
+    }
+    
+    // Highscores beim Laden der Seite laden
+    document.addEventListener('DOMContentLoaded', loadAllHighscores);
+  </script>
+</body>
+</html>
