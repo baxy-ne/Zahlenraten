@@ -2,7 +2,8 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Spiel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zahlenraten - Spiel</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <style>
     .game-container {
@@ -85,7 +86,7 @@
       <a href="{{ url_for('logout') }}">Ausloggen</a>
     </div>
   </div>
+  
+  <script src="{{ url_for('static', filename='js/game.js') }}"></script>
 </body>
 </html>
-
-
