@@ -5,7 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zahlenraten - Spiel</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  
+  <style>
+    .game-container {
+      width: min-content;
+    }
+    .game-area {
+      display: flex;
+      flex-direction:column;
+      justify-content: center;
+      gap: 20px;
+    }
+    .result-row{
+      display: flex;
+      gap: 20px;
+    }
+    .attempts-section {
+      background: var(--button-color);
+      border: 1px solid #000000;
+      border-radius: 12px;
+      padding: 16px 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      min-width: 280px;
+      font-family: "Inter", sans-serif;
+      overflow-y: auto;
+      max-height: 150px;
+    }
+    #attempts-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    #highscores-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
 </head>
 <body>
   <div class="game-container">
@@ -14,9 +49,8 @@
     <div class="game-area">
       <button id="start-button">Spiel starten</button>
       
-      <div id="game-status">Klicke auf "Spiel starten" um zu beginnen!</div>
-      
       <div class="input-group">
+        <label for="guess-input">Zahl</label>
         <input 
           type="number" 
           id="guess-input" 
@@ -27,22 +61,26 @@
         >
         <button id="guess-button" disabled>Raten</button>
       </div>
+
+      <div id="game-status">Klicke auf "Spiel starten" um zu beginnen!</div>
+
+      <div class="result-row">
+        <div class="attempts-section">
+          <span><b>Deine Versuche:</b></span>
+          <ul id="attempts-list">
+            <li>Noch keine Versuche</li>
+          </ul>
+        </div>
+      
+        <div class="attempts-section">
+          <span><b>Highscores</b></span>
+          <ul id="highscores-list">
+            <li>Lade Highscores...</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    
-    <div class="attempts-section">
-      <h3>Deine Versuche</h3>
-      <ul id="attempts-list">
-        <li>Noch keine Versuche</li>
-      </ul>
-    </div>
-    
-    <div class="highscores-section">
-      <h3>Top 10 Highscores</h3>
-      <ul id="highscores-list">
-        <li>Lade Highscores...</li>
-      </ul>
-    </div>
-    
+
     <div class="nav-links">
       <a href="{{ url_for('highscores_page') }}">Alle Highscores</a>
       <a href="{{ url_for('logout') }}">Ausloggen</a>
