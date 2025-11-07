@@ -1,39 +1,30 @@
-body {
-    margin: 0;
-    padding: 0;
-    width: 1000px;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 :root {
-    
-    --text-color-dark: #333333;
-    --padding: 10px 15px;
+  
+  --text-color-dark: #333333;
+  --padding: 10px 15px;
 
-    --border-radius: 10px;
-    --border-color: #333333;
+  --border-radius: 10px;
+  --border-color: #333333;
 
-    --button-color: #e0d4b7;
-    --component-fontsize: 14px;
+  --button-color: #e0d4b7;
+  --component-fontsize: 14px;
 
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
 }
 
 body {
-    background-color:#f5f5dc;
-    color: var(--text-color-dark);
-    margin: 0 auto;
-    padding: 0;
-    width: 1000px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  background-color:#f5f5dc;
+  color: var(--text-color-dark);
+  margin: 0 auto;
+  padding: 0;
+  width: 1000px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 @keyframes typing{
@@ -61,16 +52,43 @@ input {
   margin-bottom: 1rem;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-
 input:focus {
   border-color: #007bff;
   box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
 }
 
-button{
-    padding: var(--padding);
-    font-size: 15px;
-    background-color: var(--button-color);
-    color: var(--text-color-dark);
-    border-radius: var(--border-radius);
+button {
+  padding: var(--padding);
+  font-size: 15px;
+  background-color: var(--button-color);
+  color: var(--text-color-dark);
+  border: 2px solid #000000;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: 
+    box-shadow 0.2s ease,
+    transform 0.1s ease,
+    border-color 0.2s ease;
+}
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+button:focus-visible {
+  outline: none;
+  border-color: #646cff;
+  box-shadow: 0 0 0 4px rgba(100, 108, 255, 0.3);
+}
+button:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
 }
