@@ -5,6 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zahlenraten - Highscores</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    .highscores-table {
+      background: var(--button-color);
+      border: 1px solid #000000;
+      border-radius: 12px;
+      padding: 16px 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      font-family: "Inter", sans-serif;
+      overflow-x: auto;
+      min-width: 280px;
+      max-width: 100%;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    /* Tabelle */
+    #highscores-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: transparent;
+      color: #000;
+    }
+
+    #highscores-table th {
+      text-align: center;
+      font-weight: 600;
+      padding: 8px 10px;
+      border-bottom: 1px solid #000000;
+    }
+
+    #highscores-table td {
+      text-align: center;
+      padding: 8px 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    .rank-1 {
+      font-weight: bold;
+    }
+    .rank-2 {
+      font-weight: bold;
+    }
+    .rank-3 {
+      font-weight: bold;
+    }
+
+    .loading {
+      text-align: center;
+      color: #333;
+      font-style: italic;
+      padding: 1rem;
+    }
+
+    .nav-links {
+      margin-top: 20px;
+      width: 100%;
+      text-align: right;
+    }
+  </style>
 </head>
 <body>
   <div class="highscores-container">
@@ -29,7 +88,7 @@
     </div>
     
     <div class="nav-links">
-      <a href="{{ url_for('index') }}">🏠 Zurück zum Start</a>
+      <a href="{{ url_for('index') }}">Zurück zum Start</a>
     </div>
   </div>
   
@@ -50,8 +109,8 @@
             row.innerHTML = `
               <td class="rank rank-${rank <= 3 ? rank : ''}">${rank}.</td>
               <td>${score.username}</td>
-              <td><strong>${score.versuche}</strong> Versuche</td>
-              <td>#${score.game_id}</td>
+              <td><strong>${score.versuche}</strong></td>
+              <td>${score.game_id}</td>
             `;
             
             tbody.appendChild(row);

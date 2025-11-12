@@ -13,6 +13,8 @@ createTables()
 
 @app.route("/")
 def index():
+    if "username" in session:
+        return redirect(url_for("game", username=session["username"]))
     return render_template("index.html")
 
 @app.route("/start", methods=["POST"])

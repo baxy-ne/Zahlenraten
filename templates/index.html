@@ -25,12 +25,8 @@
       flex-direction: column;
       gap: 10px;
     }
-
-    .button-row{
-      width: 250px;
-      display: flex;
-      gap: 10px;
-      justify-content:space-between;
+    .form-input a {
+      margin-left: auto;
     }
   </style>
 </head>
@@ -51,19 +47,13 @@
     <form class="form-input" action="{{ url_for('start') }}" method="post">
       <div>
         <label for="username">Benutzername</label>
-        <input type="text" id="username" name="username" placeholder="Dein Name" required>
+        <input type="text" id="username" name="username" placeholder="Dein Name" tabindex="1" required>
             
         <label for="password">Passwort</label>
-        <input type="password" id="password" name="password" placeholder="Passwort" required>      
+        <input type="password" id="password" name="password" placeholder="Passwort" tabindex="2" required>      
       </div>
-
-        <div class="button-row">
-          <a href="{{ url_for('register') }}">
-            <button type="button">Registrieren</button>
-          </a>
-          <button type="submit">Zum Spiel 🎮</button>
-        </div>   
-     
+      <button type="submit" tabindex="3">Anmelden</button>
+      <a href="{{ url_for('register') }}" tabindex="4">Registrieren</a>
     </form>
   
 </body>
